@@ -1,0 +1,9 @@
+- hosts: iscsi_srv
+  become: yes
+  roles:
+    - { role: iscsi-targetd/server }
+
+- hosts: masters:workers
+  become: yes
+  roles:
+    - { role: iscsi-targetd/client }

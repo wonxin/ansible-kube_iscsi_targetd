@@ -1,0 +1,8 @@
+user: {{ ISCSI_TARGETD_USERNAME }}
+password: {{ ISCSI_TARGETD_PASSWORD }}
+
+block_pools: [{{ ISCSI_VG_NAME }}]
+target_name: {{ ISCSI_TARGET_NAME }}
+
+ssl: false
+log_level: warning

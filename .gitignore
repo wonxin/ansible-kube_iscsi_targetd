@@ -1,0 +1,11 @@
+# vim temp files
+*~
+*.swo
+*.swp
+
+# ansible temp files
+*.retry
+
+# company file
+hosts
+group_vars/all

@@ -1,0 +1,43 @@
+- name: install targetcli,targetd
+  yum:
+    name:
+      - targetcli
+      - targetd
+    state: present
+
+- name: enable and start target service
+  systemd:
+    name: target
+    enabled: yes
+    state: started
+
+- name: config targetd
+  template:
+    src: targetd.yml.j2
+    dest: /etc/target/targetd.yaml
+    backup: yes
+  register: config_targetd
+
+- name: enable and start targetd service
+  systemd:
+    name: targetd
+    enabled: yes
+    state: started
+
+- name: restart targetd service when config changed
+  systemd:
+    name: targetd
+    state: restarted
+  when: config_targetd.changed
+
+- name: configure the firewall for targetd (1/2)
+  firewalld:
+    service: iscsi-target
+    permanent: yes
+    state: enabled
+
+- name: configure the firewall for targetd (2/2)
+  firewalld:
+    port: 18700/tcp
+    permanent: yes
+    state: enabled
