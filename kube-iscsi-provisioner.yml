@@ -1,6 +1,0 @@
-- hosts: master1
-  become: yes
-  become_user: "{{ KUBE_ADMIN_USER }}"
-
-  roles:
-    - { role: kube-iscsi-provisioner }

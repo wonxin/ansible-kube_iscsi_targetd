@@ -1,9 +1,11 @@
 - hosts: iscsi_srv
+  gather_facts: no
   become: yes
   roles:
     - { role: iscsi-targetd/server }
 
 - hosts: masters:workers
+  gather_facts: no
   become: yes
   roles:
     - { role: iscsi-targetd/client }

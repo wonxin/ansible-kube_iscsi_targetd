@@ -21,4 +21,3 @@
     name: iscsid
     state: restarted
   when: iscsi_initiatorname.changed
-
